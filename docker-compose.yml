@@ -1,0 +1,18 @@
+web:
+  build: .
+  ports:
+    - "8080:3000"
+  volumes:
+  - ".:/crud"
+api:
+  build: server/.
+  ports:
+    - "8081:8080"
+  volumes:
+  - ".:/crud"
+  links:
+    - db
+db:
+   image: mongo:latest
+   ports:
+     - "1234:27017"
